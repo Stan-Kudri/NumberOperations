@@ -20,3 +20,5 @@ var firstNumber = new RationalNumbers(firstValueNumerator, firstValueDeniminator
 var secondNumber = new RationalNumbers(secondValueNumerator, secondValueDeniminator);
 
 Console.WriteLine(firstNumber * secondNumber);
+
+Console.WriteLine(secondNumber % firstNumber);
