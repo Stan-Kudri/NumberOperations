@@ -2,6 +2,10 @@
 {
     public class RationalNumbers
     {
+        private const string FirstNullNumber = "Первое число равно null";
+        private const string SecondNullNumber = "Второе число равно null";
+        private const string NumberIsNull = "Число равно null";
+
         private readonly float _numerator;
         private readonly float _denominator;
 
@@ -17,10 +21,10 @@
 
         public static RationalNumbers operator +(RationalNumbers firstNumber, RationalNumbers secondNumber)
         {
-            ArgumentNullException.ThrowIfNull(firstNumber, "Первое число равно null");
-            ArgumentNullException.ThrowIfNull(secondNumber, "Второе число равно null")
-                ;
-            var typleNumber = AdditionOrSubtractionOperations(firstNumber, secondNumber);
+            ArgumentNullException.ThrowIfNull(firstNumber, FirstNullNumber);
+            ArgumentNullException.ThrowIfNull(secondNumber, SecondNullNumber);
+            ;
+            var typleNumber = BringingToCommonDenominator(firstNumber, secondNumber);
 
             var numerator = typleNumber.Item1 + typleNumber.Item2;
             var denominator = typleNumber.Item3;
@@ -30,10 +34,10 @@
 
         public static RationalNumbers operator -(RationalNumbers firstNumber, RationalNumbers secondNumber)
         {
-            ArgumentNullException.ThrowIfNull(firstNumber, "Первое число равно null");
-            ArgumentNullException.ThrowIfNull(secondNumber, "Второе число равно null");
+            ArgumentNullException.ThrowIfNull(firstNumber, FirstNullNumber);
+            ArgumentNullException.ThrowIfNull(secondNumber, SecondNullNumber);
 
-            var typleNumber = AdditionOrSubtractionOperations(firstNumber, secondNumber);
+            var typleNumber = BringingToCommonDenominator(firstNumber, secondNumber);
 
             var numerator = typleNumber.Item1 - typleNumber.Item2;
             var denominator = typleNumber.Item3;
@@ -41,7 +45,7 @@
             return new RationalNumbers(numerator, denominator);
         }
 
-        private static ValueTuple<float, float, float> AdditionOrSubtractionOperations(RationalNumbers firstNumber, RationalNumbers secondNumber)
+        private static ValueTuple<float, float, float> BringingToCommonDenominator(RationalNumbers firstNumber, RationalNumbers secondNumber)
         {
             if (firstNumber._denominator == secondNumber._denominator)
             {
@@ -63,24 +67,24 @@
 
         public static RationalNumbers operator *(RationalNumbers firstNumber, RationalNumbers secondNumber)
         {
-            ArgumentNullException.ThrowIfNull(firstNumber, "Первое число равно null");
-            ArgumentNullException.ThrowIfNull(secondNumber, "Второе число равно null");
+            ArgumentNullException.ThrowIfNull(firstNumber, FirstNullNumber);
+            ArgumentNullException.ThrowIfNull(secondNumber, SecondNullNumber);
 
             return new RationalNumbers(firstNumber._numerator * secondNumber._numerator, firstNumber._denominator * secondNumber._denominator);
         }
 
         public static RationalNumbers operator /(RationalNumbers firstNumber, RationalNumbers secondNumber)
         {
-            ArgumentNullException.ThrowIfNull(firstNumber, "Первое число равно null");
-            ArgumentNullException.ThrowIfNull(secondNumber, "Второе число равно null");
+            ArgumentNullException.ThrowIfNull(firstNumber, FirstNullNumber);
+            ArgumentNullException.ThrowIfNull(secondNumber, SecondNullNumber);
 
             return new RationalNumbers(firstNumber._numerator * secondNumber._denominator, firstNumber._denominator * secondNumber._numerator);
         }
 
         public static float operator %(RationalNumbers firstNumber, RationalNumbers secondNumber)
         {
-            ArgumentNullException.ThrowIfNull(firstNumber, "Первое число равно null");
-            ArgumentNullException.ThrowIfNull(secondNumber, "Второе число равно null");
+            ArgumentNullException.ThrowIfNull(firstNumber, FirstNullNumber);
+            ArgumentNullException.ThrowIfNull(secondNumber, SecondNullNumber);
 
             var numerator = firstNumber._numerator * secondNumber._denominator;
             var denominator = firstNumber._denominator * secondNumber._numerator;
@@ -93,62 +97,62 @@
 
         public static RationalNumbers operator ++(RationalNumbers number)
         {
-            ArgumentNullException.ThrowIfNull(number, "Число равно null");
+            ArgumentNullException.ThrowIfNull(number, NumberIsNull);
 
             return new RationalNumbers(number._numerator + number._denominator, number._denominator);
         }
 
         public static RationalNumbers operator --(RationalNumbers number)
         {
-            ArgumentNullException.ThrowIfNull(number, "Число равно null");
+            ArgumentNullException.ThrowIfNull(number, NumberIsNull);
 
             return new RationalNumbers(number._numerator - number._denominator, number._denominator);
         }
 
         public static bool operator ==(RationalNumbers firstNumber, RationalNumbers secondNumber)
         {
-            ArgumentNullException.ThrowIfNull(firstNumber, "Первое число равно null");
-            ArgumentNullException.ThrowIfNull(secondNumber, "Второе число равно null");
+            ArgumentNullException.ThrowIfNull(firstNumber, FirstNullNumber);
+            ArgumentNullException.ThrowIfNull(secondNumber, SecondNullNumber);
 
             return firstNumber.ValueNumber() == secondNumber.ValueNumber();
         }
 
         public static bool operator !=(RationalNumbers firstNumber, RationalNumbers secondNumber)
         {
-            ArgumentNullException.ThrowIfNull(firstNumber, "Первое число равно null");
-            ArgumentNullException.ThrowIfNull(secondNumber, "Второе число равно null");
+            ArgumentNullException.ThrowIfNull(firstNumber, FirstNullNumber);
+            ArgumentNullException.ThrowIfNull(secondNumber, SecondNullNumber);
 
             return !(firstNumber == secondNumber);
         }
 
         public static bool operator >(RationalNumbers firstNumber, RationalNumbers secondNumber)
         {
-            ArgumentNullException.ThrowIfNull(firstNumber, "Первое число равно null");
-            ArgumentNullException.ThrowIfNull(secondNumber, "Второе число равно null");
+            ArgumentNullException.ThrowIfNull(firstNumber, FirstNullNumber);
+            ArgumentNullException.ThrowIfNull(secondNumber, SecondNullNumber);
 
             return firstNumber.CompareTo(secondNumber) > 0;
         }
 
         public static bool operator <(RationalNumbers firstNumber, RationalNumbers secondNumber)
         {
-            ArgumentNullException.ThrowIfNull(firstNumber, "Первое число равно null");
-            ArgumentNullException.ThrowIfNull(secondNumber, "Второе число равно null");
+            ArgumentNullException.ThrowIfNull(firstNumber, FirstNullNumber);
+            ArgumentNullException.ThrowIfNull(secondNumber, SecondNullNumber);
 
             return secondNumber.CompareTo(firstNumber) > 0;
         }
 
         public static bool operator >=(RationalNumbers firstNumber, RationalNumbers secondNumber)
         {
-            ArgumentNullException.ThrowIfNull(firstNumber, "Первое число равно null");
-            ArgumentNullException.ThrowIfNull(secondNumber, "Второе число равно null");
+            ArgumentNullException.ThrowIfNull(firstNumber, FirstNullNumber);
+            ArgumentNullException.ThrowIfNull(secondNumber, SecondNullNumber);
 
             return firstNumber.CompareTo(secondNumber) >= 0;
         }
 
         public static bool operator <=(RationalNumbers firstNumber, RationalNumbers secondNumber)
         {
-            ArgumentNullException.ThrowIfNull(firstNumber, "Первое число равно null");
-            ArgumentNullException.ThrowIfNull(secondNumber, "Второе число равно null");
+            ArgumentNullException.ThrowIfNull(firstNumber, FirstNullNumber);
+            ArgumentNullException.ThrowIfNull(secondNumber, SecondNullNumber);
 
             return secondNumber.CompareTo(firstNumber) >= 0;
         }
