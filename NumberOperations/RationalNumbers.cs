@@ -24,7 +24,7 @@
             ArgumentNullException.ThrowIfNull(firstNumber, FirstNullNumber);
             ArgumentNullException.ThrowIfNull(secondNumber, SecondNullNumber);
             ;
-            var typleNumber = BringingToCommonDenominator(firstNumber, secondNumber);
+            var typleNumber = ExtractCommonDenominator(firstNumber, secondNumber);
 
             var numerator = typleNumber.Item1 + typleNumber.Item2;
             var denominator = typleNumber.Item3;
@@ -37,7 +37,7 @@
             ArgumentNullException.ThrowIfNull(firstNumber, FirstNullNumber);
             ArgumentNullException.ThrowIfNull(secondNumber, SecondNullNumber);
 
-            var typleNumber = BringingToCommonDenominator(firstNumber, secondNumber);
+            var typleNumber = ExtractCommonDenominator(firstNumber, secondNumber);
 
             var numerator = typleNumber.Item1 - typleNumber.Item2;
             var denominator = typleNumber.Item3;
@@ -45,7 +45,7 @@
             return new RationalNumbers(numerator, denominator);
         }
 
-        private static ValueTuple<float, float, float> BringingToCommonDenominator(RationalNumbers firstNumber, RationalNumbers secondNumber)
+        private static (float firstValueNumbertor, float secondValueNumbertor, float valueDenominator) ExtractCommonDenominator(RationalNumbers firstNumber, RationalNumbers secondNumber)
         {
             if (firstNumber._denominator == secondNumber._denominator)
             {
