@@ -23,11 +23,11 @@
         {
             ArgumentNullException.ThrowIfNull(firstNumber, FirstNullNumber);
             ArgumentNullException.ThrowIfNull(secondNumber, SecondNullNumber);
-            ;
+
             var typleNumber = ExtractCommonDenominator(firstNumber, secondNumber);
 
-            var numerator = typleNumber.Item1 + typleNumber.Item2;
-            var denominator = typleNumber.Item3;
+            var numerator = typleNumber.firstValueNumbertor + typleNumber.secondValueNumbertor;
+            var denominator = typleNumber.valueDenominator;
 
             return new RationalNumbers(numerator, denominator);
         }
@@ -39,8 +39,8 @@
 
             var typleNumber = ExtractCommonDenominator(firstNumber, secondNumber);
 
-            var numerator = typleNumber.Item1 - typleNumber.Item2;
-            var denominator = typleNumber.Item3;
+            var numerator = typleNumber.firstValueNumbertor - typleNumber.secondValueNumbertor;
+            var denominator = typleNumber.valueDenominator;
 
             return new RationalNumbers(numerator, denominator);
         }
@@ -53,15 +53,15 @@
             }
             else
             {
-                var numberGCM = GreatestCommonMultiple.NumberGCM(firstNumber._denominator, secondNumber._denominator);
+                var valueDenominator = GreatestCommonMultiple.NumberGCM(firstNumber._denominator, secondNumber._denominator);
 
-                var firstDenominatorMultiplier = numberGCM / firstNumber._denominator;
-                var secondDenominatorMultiplier = numberGCM / secondNumber._denominator;
+                var firstDenominatorMultiplier = valueDenominator / firstNumber._denominator;
+                var secondDenominatorMultiplier = valueDenominator / secondNumber._denominator;
 
-                var firstNumerator = firstDenominatorMultiplier * firstNumber._numerator;
-                var secondNumerator = secondDenominatorMultiplier * secondNumber._numerator;
+                var firstValueNumbertor = firstDenominatorMultiplier * firstNumber._numerator;
+                var secondValueNumbertor = secondDenominatorMultiplier * secondNumber._numerator;
 
-                return (firstNumerator, secondNumerator, numberGCM);
+                return (firstValueNumbertor, secondValueNumbertor, valueDenominator);
             }
         }
 
